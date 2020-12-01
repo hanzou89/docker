@@ -1,0 +1,27 @@
+version: "2.1"
+services:
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    ports:
+      - 8181:80/tcp
+    restart: on-failure
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: lalala
+      WORDPRESS_DB_NAME: worpress
+      WORDPRESS_TABLE_PREFIX: tito
+    depends_on: 
+      - mysql
+    
+
+  mysql:
+    image: mysql:5.7.20
+    container_name: mysql-server
+    restart: on-failure
+    environment:
+        MYSQL_ROOT_PASSWORD: 'lalala'
+        MYSQL_DATABASE: worpress
+        TZ: 'Europe/Madrid'
